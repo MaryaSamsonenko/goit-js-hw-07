@@ -5,9 +5,10 @@ console.log(galleryItems);
 
 const galleryEl = document.querySelector(".gallery");
 
-const arrayEl = galleryItems
-  .map(
-    ({ preview, original, description }) => `
+const arrayEl = galleryItems.reduce(
+  (acc, { preview, original, description }) =>
+    acc +
+    `
   <a class="gallery__item" href="${original}">
     <img
       class="gallery__image"
@@ -15,9 +16,9 @@ const arrayEl = galleryItems
       alt="${description}"
     />
   </a>
-`
-  )
-  .join("");
+`,
+  ""
+);
 galleryEl.insertAdjacentHTML("afterbegin", arrayEl);
 
 galleryEl.addEventListener("click", onGetLargeImage);
